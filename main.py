@@ -76,6 +76,12 @@ direction_names_kr = {
     "RIGHT": "오른쪽"
 }
 
+direction_names_tts = {
+    "LEFT": "left",
+    "FRONT": "center",
+    "RIGHT": "right"
+}
+
 distance_keys = {
     "LEFT": "left_distance",
     "FRONT": "front_distance",
@@ -106,6 +112,7 @@ object_names_kr = {
     "bottle": "병",
     "chair": "의자",
     "potted plant": "화분",
+    "dining table": "테이블"
 }
 
 
@@ -304,7 +311,7 @@ def use_coss_data():
             loc = state.get_location()
             record_obstacle(loc["lat"], loc["lon"])
 
-            speak(message)
+            speak(direction_names_tts[direction])
 
             print("Voice alert:", message)
 
@@ -418,7 +425,7 @@ try:
 
                 if cooldown_passed:
                     if check_nearby_hazard(loc["lat"], loc["lon"]):
-                        speak("Warning, hazard zone ahead")
+                        speak("hazard zone")
                         warned_zones[zone_key] = current_time
                         walk_warned_zones.add(zone_key)
 
